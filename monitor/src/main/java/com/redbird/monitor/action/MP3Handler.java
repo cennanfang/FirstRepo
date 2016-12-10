@@ -20,9 +20,7 @@ public class MP3Handler implements ActionHandler{
 	@Override
 	public void handleAction(Configuration config) {
 		MP3Player player = MP3Player.getInstance().init(config.getMp3File());
-		System.out.println("handleAction");
 		if(player.isStop()) {
-			System.out.println("start paly");
 			new Thread(player).start();
 		}
 	}
