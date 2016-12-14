@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -193,11 +194,25 @@ public class MainFrame {
 		dbPasswdField.setText(config.getDbPasswd());
 		dbTypeChoice.select(config.getDbType());
 
-		JButton button = new JButton("详细配置");
-		springLayout.putConstraint(SpringLayout.EAST, playMiusicBtn, -41, SpringLayout.WEST, button);
-		springLayout.putConstraint(SpringLayout.SOUTH, button, -10, SpringLayout.SOUTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, button, 0, SpringLayout.EAST, label_5);
-		frame.getContentPane().add(button);
+		JButton settingBtn = new JButton("详细配置");
+		springLayout.putConstraint(SpringLayout.EAST, playMiusicBtn, -41, SpringLayout.WEST, settingBtn);
+		springLayout.putConstraint(SpringLayout.SOUTH, settingBtn, -10, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, settingBtn, 0, SpringLayout.EAST, label_5);
+		frame.getContentPane().add(settingBtn);
+		settingBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DetailConfigDialog dialog = new DetailConfigDialog();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setTitle("详细配置");
+					dialog.setVisible(true);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
+		
 
 		JPanel consolePanel = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, consolePanel, 6, SpringLayout.SOUTH, label_5);
